@@ -9,7 +9,20 @@
 	"compatibility_date": "2025-11-05",
 	"observability": {
 		"enabled": true
-	}
+	},
+	"d1_databases": [
+		{
+			"binding": "DB", // Key to be used in .env
+			"database_name": "stocks-db",
+			"database_id": "c3476d78-33cc-40e5-ae7b-f0a54e0b663b",
+			"remote": true
+		},
+		{
+			"binding": "DB_PREVIEW",
+			"database_name": "stocks-db-preview",
+			"database_id": "0b70ac85-9db9-4aab-9af9-33449c77d3d5"
+		}
+	]
 	/**
 	 * Smart Placement
 	 * Docs: https://developers.cloudflare.com/workers/configuration/smart-placement/#smart-placement
