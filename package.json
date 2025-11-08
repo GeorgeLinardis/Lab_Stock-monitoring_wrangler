@@ -9,13 +9,13 @@
 		"deploy": "wrangler deploy",
 
 		"db:migrate:local": "wrangler d1 migrations apply stocks-db --local",
-		"db:migrate:preview": "wrangler d1 migrations apply stocks-db --remote --env preview",
-		"db:migrate:prod": "wrangler d1 migrations apply stocks-db --remote --env production",
-		"db:migrate:list:preview": "wrangler d1 migrations list stocks-db --remote --env preview",
-		"db:migrate:list:prod": "wrangler d1 migrations list stocks-db --remote --env production",
+		"db:migrate:preview": "wrangler d1 migrations apply stocks-db-preview --remote",
+		"db:migrate:prod": "wrangler d1 migrations apply stocks-db --remote",
+		"db:migrate:list:preview": "wrangler d1 migrations list stocks-db-preview --remote",
+		"db:migrate:list:prod": "wrangler d1 migrations list stocks-db --remote",
 
-		"db:export:preview": "mkdir -p ./.d1 && wrangler d1 export stocks-db --remote --env preview --output=./.d1/preview.sql",
-		"db:export:prod": "mkdir -p ./.d1 && wrangler d1 export stocks-db --remote --env production --output=./.d1/prod.sql",
+		"db:export:preview": "mkdir -p ./.d1 && wrangler d1 export stocks-db-preview --remote --output=./.d1/preview.sql",
+		"db:export:prod": "mkdir -p ./.d1 && wrangler d1 export stocks-db --remote --output=./.d1/prod.sql",
 
 		"db:to-sqlite:preview": "sqlite3 ./.d1/preview.db < ./.d1/preview.sql",
 		"db:to-sqlite:prod": "sqlite3 ./.d1/prod.db < ./.d1/prod.sql",
@@ -23,11 +23,12 @@
 		"db:snapshot:preview": "npm run db:export:preview && npm run db:to-sqlite:preview",
 		"db:snapshot:prod": "npm run db:export:prod && npm run db:to-sqlite:prod",
 
-		"db:sync:prod-preview": "npm run db:export:prod && wrangler d1 execute stocks-db --remote --env preview --file=./.d1/prod.sql",
-		"db:sync:preview-prod": "npm run db:export:preview && wrangler d1 execute stocks-db --remote --env production --file=./.d1/preview.sql",
+		"db:reset:preview": "wrangler d1 execute stocks-db-preview --remote --file=./.d1/reset.sql",
+		"db:sync:prod-preview": "npm run db:reset:preview && npm run db:export:prod && wrangler d1 execute stocks-db-preview --remote --file=./.d1/prod.sql",
+		"db:sync:preview-prod": "npm run db:export:preview && wrangler d1 execute stocks-db --remote --file=./.d1/preview.sql",
 
-		"db:tables:preview": "wrangler d1 shell stocks-db --remote --env preview -c \".tables\"",
-		"db:tables:prod": "wrangler d1 shell stocks-db --remote --env production -c \".tables\""
+		"db:tables:preview": "wrangler d1 shell stocks-db-preview --remote -c \".tables\"",
+		"db:tables:prod": "wrangler d1 shell stocks-db --remote -c \".tables\""
 	},
 		"devDependencies": {
 		"@cloudflare/vitest-pool-workers": "^0.8.19",

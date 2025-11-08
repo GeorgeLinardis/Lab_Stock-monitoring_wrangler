@@ -10,6 +10,12 @@
 	"observability": {
 		"enabled": true
 	},
+	"triggers": {
+		"crons": [
+			"0 0 * * *", // Daily at 00:00 UTC,
+			"0 0 * * 1" // # + weekly (Mondays 00:00 UTC)
+		]
+	},
 	"d1_databases": [
 		{
 			"binding": "DB", // Key to be used in .env
@@ -20,7 +26,7 @@
 		{
 			"binding": "DB_PREVIEW",
 			"database_name": "stocks-db-preview",
-			"database_id": "0b70ac85-9db9-4aab-9af9-33449c77d3d5"
+			"database_id": "b6c299a8-3b41-42ec-bcef-311aca0fb681"
 		}
 	]
 	/**
