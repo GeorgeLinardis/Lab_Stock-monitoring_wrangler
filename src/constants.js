@@ -1,0 +1,2 @@
+export const DEFAULT_SEARCH_RESULTS_SIZE = 50;
+export const MAX_SEARCH_RESULTS_SIZE = 100;
