@@ -4,7 +4,7 @@
 
 Project status: frozen due to high pricing in Europe stock APIs.
 
-Backend Cloudflare Worker for the Stock Monitoring app. It pairs with the React client at https://github.com/GeorgeLinardis/Stock-monitoring_client to serve market data and scoring results.
+Backend Cloudflare Worker for the Stock Monitoring app. It pairs with the React client at https://github.com/GeorgeLinardis/Lab_Stock-monitoring_client to serve market data and scoring results.
 
 ## What it does
 - Serves a paginated `/api/stocks` endpoint backed by the D1 `symbols` table.
